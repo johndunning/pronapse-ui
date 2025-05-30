@@ -5,18 +5,31 @@ import TagFilter from './components/TagFilter';
 import Addtag from './components/Addtag';
 
 import './App.css';
+import { MdSchedule } from 'react-icons/md';
+
+const tileStyles = {
+    default: {
+        tileColor: '#005b76',
+        senderBgColor: '#1983b1',
+        senderTextColor: '#ffffff',
+        messageTextColor: '#ffffff',
+        dotColor: '#ffffff',
+        iconColor: '#80c2ff',
+    },
+    school: {
+        dotColor: '#db516d',
+        iconColor: '#db516d',
+        messageTextColor: '#ffffff',
+        name: 'School',
+        senderBgColor: '#db516d"',
+        senderTextColor: '#ffffff',
+        tileColor: '#750017',
+    },
+};
 
 const tagsList = [
-    { name: 'School', color: '#5c1a84' },
-    { name: 'Work', color: '#4a4a4a' },
-    { name: 'Bills', color: '#cc4a11' },
-    { name: 'Social', color: '#1eaae7' },
-    { name: 'Projects', color: '#0c5b75' },
-    { name: 'Family', color: '#ffc4a3' },
-    { name: 'Admin', color: '#bbbbbb' },
-    { name: 'Health', color: '#4e9c1e' },
-    { name: 'Mail', color: '#0078D4' },
-    { name: 'No Filter', color: '#ffffff' },
+    { name: 'school', color: '#db516d' },
+    { name: 'default', color: '#ffffff' },
 ];
 
 const mockData = [
@@ -26,6 +39,7 @@ const mockData = [
         sender: 'John Dunning',
         timestamp: '27/05/2025 16:42',
         classification: 'Mail',
+        style: 'default',
         tags: ['School', 'Work', 'Projects', 'Mail'],
     },
     {
@@ -34,6 +48,7 @@ const mockData = [
         sender: 'Health Center',
         timestamp: '27/05/2025 10:21',
         classification: 'Mail',
+        style: 'default',
         tags: ['Health', 'Mail'],
     },
     {
@@ -42,6 +57,7 @@ const mockData = [
         sender: 'Aunt May',
         timestamp: '26/05/2025 18:09',
         classification: 'Mail',
+        style: 'default',
         tags: ['Family', 'Social'],
     },
     {
@@ -50,6 +66,7 @@ const mockData = [
         sender: 'Principal',
         timestamp: '25/05/2025 08:45',
         classification: 'Mail',
+        style: 'school',
         tags: ['School', 'Mail'],
     },
     {
@@ -58,6 +75,7 @@ const mockData = [
         sender: 'Admin System',
         timestamp: '24/05/2025 14:02',
         classification: 'Mail',
+        style: 'default',
         tags: ['Admin'],
     },
     {
@@ -66,6 +84,7 @@ const mockData = [
         sender: 'Power Company',
         timestamp: '23/05/2025 17:12',
         classification: 'Mail',
+        style: 'default',
         tags: ['Bills'],
     },
     {
@@ -74,6 +93,7 @@ const mockData = [
         sender: 'Project Manager',
         timestamp: '22/05/2025 09:32',
         classification: 'Mail',
+        style: 'default',
         tags: ['Projects', 'Work'],
     },
     {
@@ -82,6 +102,7 @@ const mockData = [
         sender: 'Best Friend',
         timestamp: '21/05/2025 19:44',
         classification: 'Mail',
+        style: 'default',
         tags: ['Social'],
     },
 ];
@@ -139,6 +160,7 @@ function App() {
                                 sender={item.sender}
                                 timestamp={item.timestamp}
                                 classification={handleSelectedTag}
+                                styleOverrides={tileStyles[item.style]}
                                 tags={item.tags}
                             />
                         ))}
