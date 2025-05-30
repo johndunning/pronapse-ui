@@ -7,30 +7,37 @@ import Addtag from './components/Addtag';
 import './App.css';
 import { MdSchedule } from 'react-icons/md';
 
-const tileStyles = {
-    default: {
+const mockTileStyles = {
+    mail: {
         tileColor: '#005b76',
         senderBgColor: '#1983b1',
         senderTextColor: '#ffffff',
         messageTextColor: '#ffffff',
-        dotColor: '#ffffff',
+        dotColor: '#1983b1',
         iconColor: '#80c2ff',
     },
     school: {
         dotColor: '#db516d',
         iconColor: '#db516d',
         messageTextColor: '#ffffff',
-        name: 'School',
         senderBgColor: '#db516d',
         senderTextColor: '#ffffff',
         tileColor: '#750017',
     },
+    work: {
+        tileColor: '#467500',
+        senderBgColor: '#78ab2b',
+        senderTextColor: '#ffffff',
+        messageTextColor: '#ffffff',
+        dotColor: '#78ab2b',
+        iconColor: '#78ab2b',
+    },
 };
 
-const tagsList = [
-    { name: 'school', color: '#db516d' },
-    { name: 'default', color: '#ffffff' },
-];
+const tagsList = Object.entries(mockTileStyles).map(([key, value]) => ({
+    name: key,
+    color: value.dotColor || '#ffffff',
+}));
 
 const mockData = [
     {
@@ -39,7 +46,7 @@ const mockData = [
         sender: 'John Dunning',
         timestamp: '27/05/2025 16:42',
         classification: 'Mail',
-        style: 'default',
+        style: 'mail',
         tags: ['School', 'Work', 'Projects', 'Mail'],
     },
     {
@@ -48,7 +55,7 @@ const mockData = [
         sender: 'Health Center',
         timestamp: '27/05/2025 10:21',
         classification: 'Mail',
-        style: 'default',
+        style: 'mail',
         tags: ['Health', 'Mail'],
     },
     {
@@ -57,7 +64,7 @@ const mockData = [
         sender: 'Aunt May',
         timestamp: '26/05/2025 18:09',
         classification: 'Mail',
-        style: 'default',
+        style: 'mail',
         tags: ['Family', 'Social'],
     },
     {
@@ -75,7 +82,7 @@ const mockData = [
         sender: 'Admin System',
         timestamp: '24/05/2025 14:02',
         classification: 'Mail',
-        style: 'default',
+        style: 'mail',
         tags: ['Admin'],
     },
     {
@@ -84,7 +91,7 @@ const mockData = [
         sender: 'Power Company',
         timestamp: '23/05/2025 17:12',
         classification: 'Mail',
-        style: 'default',
+        style: 'mail',
         tags: ['Bills'],
     },
     {
@@ -93,7 +100,7 @@ const mockData = [
         sender: 'Project Manager',
         timestamp: '22/05/2025 09:32',
         classification: 'Mail',
-        style: 'default',
+        style: 'work',
         tags: ['Projects', 'Work'],
     },
     {
@@ -102,7 +109,7 @@ const mockData = [
         sender: 'Best Friend',
         timestamp: '21/05/2025 19:44',
         classification: 'Mail',
-        style: 'default',
+        style: 'mail',
         tags: ['Social'],
     },
 ];
@@ -112,7 +119,10 @@ function App() {
     const [selectedTag, setSelectedTag] = useState('');
 
     const [showAddForm, setShowAddForm] = useState(false);
-    const [tags, settags] = useState(tagsList);
+    const [tags, setTags] = useState(tagsList);
+    const [tileStyles, setTileStyles] = useState(mockTileStyles);
+
+    console.log(JSON.stringify(mockTileStyles, null, 2));
 
     const handleSelectedClassification = (name) => {
         setSelectedClass(name);
@@ -125,11 +135,29 @@ function App() {
     };
 
     const handleSaveTag = (newClass) => {
-        console.log('New class saved:', newClass);
-        settags((prev) => [
+        console.log('New class saved:', JSON.stringify(newClass, null, 2));
+        setTags((prev) => [
             ...prev,
             { name: newClass.name, color: newClass.dotColor },
         ]);
+        setTileStyles;
+        (prev) => ({
+            ...prev,
+            [newClass.name]: {
+                tileColor: newClass.tileColor,
+                senderBgColor: newClass.senderBgColor,
+                senderTextColor: newClass.senderTextColor,
+                messageTextColor: newClass.messageTextColor,
+                dotColor: newClass.dotColor,
+                iconColor: newClass.iconColor,
+            },
+        });
+
+        console.log(
+            'Tile styles updated:',
+            JSON.stringify(tileStyles, null, 2)
+        );
+
         tagsList.push(newClass); // Add to the global list so it appears as a button
         setSelectedClass(newClass.name);
         setShowAddForm(false);
