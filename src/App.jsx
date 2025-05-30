@@ -103,8 +103,12 @@ function App() {
         setShowAddForm(false); // Reset to original view
     };
 
-    const handleSavetag = (newClass) => {
-        settags((prev) => [...prev, newClass]);
+    const handleSaveTag = (newClass) => {
+        console.log('New class saved:', newClass);
+        settags((prev) => [
+            ...prev,
+            { name: newClass.name, color: newClass.dotColor },
+        ]);
         tagsList.push(newClass); // Add to the global list so it appears as a button
         setSelectedClass(newClass.name);
         setShowAddForm(false);
@@ -123,7 +127,7 @@ function App() {
             <div className="main-content">
                 {showAddForm ? (
                     <Addtag
-                        onSave={handleSavetag}
+                        onSave={handleSaveTag}
                         onCancel={() => setShowAddForm(false)}
                     />
                 ) : (

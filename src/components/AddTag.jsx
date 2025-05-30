@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Tile from './Tile';
 import './AddTag.css';
 
-const AddClassification = ({ onSave, onCancel }) => {
+const AddTag = ({ onSave, onCancel }) => {
     const [name, setName] = useState('');
     const [iconColor, setIconColor] = useState('#80c2ff');
     const [tileColor, setTileColor] = useState('#005b76');
@@ -15,7 +15,6 @@ const AddClassification = ({ onSave, onCancel }) => {
         e.preventDefault();
         onSave({
             name,
-            icon,
             tileColor,
             senderBgColor,
             senderTextColor,
@@ -30,7 +29,7 @@ const AddClassification = ({ onSave, onCancel }) => {
         sender: 'John Dunning',
         timestamp: '27/05/2025 16:42',
         classification: name,
-        classifications: [name],
+        tags: [name],
         styleOverrides: {
             tileColor,
             senderBgColor,
@@ -127,4 +126,4 @@ const AddClassification = ({ onSave, onCancel }) => {
     );
 };
 
-export default AddClassification;
+export default AddTag;
