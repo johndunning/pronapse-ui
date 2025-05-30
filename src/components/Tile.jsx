@@ -7,7 +7,7 @@ const Tile = ({
     sender,
     timestamp,
     classification,
-    classifications,
+    tags,
     styleOverrides = {},
 }) => {
     const {
@@ -45,7 +45,7 @@ const Tile = ({
             </div>
 
             <div className="tile-footer">
-                {classifications.map((cls, idx) => (
+                {tags.map((cls, idx) => (
                     <span
                         key={idx}
                         className={`tile-dot ${

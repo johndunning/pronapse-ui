@@ -1,36 +1,36 @@
 import React from 'react';
 import './TopBar.css';
 
-const TopBar = ({ onSettingsClick, onSelectClassification }) => (
+const TopBar = ({ onSettingsClick, handleSelectedClassification }) => (
     <div className="top-bar">
         <div className="top-bar-left">
             <button
                 className="blue"
-                onClick={() => onSelectClassification('Mail')}
+                onClick={() => handleSelectedClassification('Mail')}
             >
                 Mail
             </button>
             <button
                 className="blue"
-                onClick={() => onSelectClassification('Finances')}
+                onClick={() => handleSelectedClassification('Finances')}
             >
                 Finances
             </button>
             <button
                 className="blue"
-                onClick={() => onSelectClassification('Calendar')}
+                onClick={() => handleSelectedClassification('Calendar')}
             >
                 Calendar
             </button>
             <button
                 className="blue"
-                onClick={() => onSelectClassification('Story')}
+                onClick={() => handleSelectedClassification('Story')}
             >
                 Story
             </button>
             <button
                 className="blue"
-                onClick={() => onSelectClassification('AI')}
+                onClick={() => handleSelectedClassification('AI')}
             >
                 AI
             </button>

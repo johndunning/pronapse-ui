@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Tile from './Tile';
-import './AddClassification.css';
+import './AddTag.css';
 
 const AddClassification = ({ onSave, onCancel }) => {
     const [name, setName] = useState('');

@@ -1,9 +1,9 @@
 import React from 'react';
-import './ClassificationFilter.css';
+import './TagFilter.css';
 
-const ClassificationFilter = ({ classifications, selected, onSelect }) => (
+const TagFilter = ({ tags, selected, onSelect }) => (
     <div className="classification-bar">
-        {classifications.map((item, idx) => (
+        {tags.map((item, idx) => (
             <div
                 key={idx}
                 className="dot-wrapper"
@@ -25,4 +25,4 @@ const ClassificationFilter = ({ classifications, selected, onSelect }) => (
     </div>
 );
 
-export default ClassificationFilter;
+export default TagFilter;
