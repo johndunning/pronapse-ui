@@ -21,7 +21,7 @@ const tileStyles = {
         iconColor: '#db516d',
         messageTextColor: '#ffffff',
         name: 'School',
-        senderBgColor: '#db516d"',
+        senderBgColor: '#db516d',
         senderTextColor: '#ffffff',
         tileColor: '#750017',
     },
